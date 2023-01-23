@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="es" xmlsn:th="http://www.thymeleaf.org">
+
+<head th:replace="commons/header :: header" />
+
+<body>
+  <div th:replace="commons/menu :: menu" />
+
+  <!-- boton nuevo cliente -->
+  <a th:href="@{/clientes/nuevo}" class="btn btn-primary" th:text="#{cliente.nuevo}">nuevo cliente</a>
+
+  <!-- lista clientes -->
+  <table class="table">
+    <thead>
+      <tr>
+        <th scope="col" th:text="#{cliente.codigo}">codigo</th>
+        <th scope="col" th:text="#{cliente.nombre}">Nombre</th>
+        <th scope="col" th:text="#{cliente.apellidos}">Apellidos</th>
+        <th scope="col" th:text="#{cliente.email}">Email</th>
+        <th scope="col" th:text="#{cliente.dni}">Dni</th>
+        <th scope="col" th:text="#{cliente.telefono}">Teléfono</th>
+        <th scope="col" th:text="#{cliente.direccion}">Dirección</th>
+        <th scope="col" th:text="#{cliente.vip}">VIP</th>
+        <th scope="col"></th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr th:each="cliente : ${clientes}">
+        <th scope="row" th:text="${cliente.codigo}"></th>
+        <td th:text="${cliente.nombre}">Nombre</td>
+        <td th:text="${cliente.apellidos}">apellidos</td>
+        <td th:text="${cliente.email}">@email</td>
+        <td th:text="${cliente.dni}">dni</td>
+        <td th:text="${cliente.telefono}">tel</td>
+        <td th:text="${cliente.direccion}">dir</td>
+        <td th:text="${cliente.vip} ? 'SI' : 'NO'">vip</td>
+        <td>
+          <a class="btn btn-primary" th:href="@{/clientes/añadirCesta/}+${cliente.codigo}">cesta</a>
+          <a th:href="@{/clientes/editar/}+${cliente.codigo}" class="btn btn-primary"
+            th:text="#{cliente.editar}">editar</a>
+          <a th:href="@{/clientes/borrar/}+${cliente.codigo}" class="btn btn-danger"
+            th:text="#{cliente.borrar}">borrar</a>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+
+  <!-- nav -->
+  <div class="row">
+    <div th:replace="commons/pagination :: pagination">
+  </div>
+
+  <div th:replace="commons/footer :: footer" class="container" />
+
+</body>
+
+</html>

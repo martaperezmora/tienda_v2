@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="es" xmlsn:th="http://www.thymeleaf.org">
+  <head th:replace="commons/header :: header"/>
+<body>
+    <div th:replace="commons/menu :: menu"/>
+    <form class="row g-3" th:action="@{/productos/modificar}" method="post" enctype="multipart/form-data">
+      <input type="hidden" id="codigo" name="codigo" min="0" th:value="${producto.codigo}">
+
+      <div class="col-md-3">
+        <label for="nombre" class="form-label" th:text="#{producto.nombre}">Nombre</label>
+        <input type="text" class="form-control" id="nombre" name="nombre" th:value="${producto.nombre}" autofocus>
+      </div>
+
+      <div class="col-md-3">
+          <label for="descripcion" class="form-label" th:text="#{producto.descripcion}">Descripción</label>
+          <textarea class="form-control" id="descripcion" name="descripcion" th:text="${producto.descripcion}" rows="3"></textarea>
+      </div>
+
+      <div class="col-md-3">
+        <label for="precio" class="form-label" th:text="#{producto.precio}">Precio</label>
+        <input type="text" class="form-control" id="precio" name="precio" th:value="${producto.precio}">
+      </div>
+
+      <div class="container">
+        <div class="row">
+          <div class="col-3">
+            <div class="card" style="width: 18rem;">
+              <img th:src="'data:image/jpeg;base64,' + ${producto.imageView}" class="card-img-top" alt="...">
+            </div>
+          </div>
+        </div>
+
+        
+        <div class="mb-3" th:if="${!cesta}">
+          <label for="formFile" class="form-label">Imagen</label>
+          <input class="form-control" type="file" id="imageForm" name="imageForm">
+        </div>
+      </div>
+
+      <!--boton cantidad para añadir en cesta-->
+      <div class="row" th:if="${cesta}">
+        <div class="col-sm-4">
+          <label for="quantity">Cantidad:</label>
+          <input type="number" id="quantity" name="quantity" min="1" max="500" value="1">
+        </div>
+        <div class="col-sm-1">
+          <a class="btn btn-primary" th:href="@{/productos/añadirCesta/{codigo}/{cantidad}(codigo=${producto.codigo},cantidad=2)}" role="button">añadir a la cesta</a>
+        </div>
+      </div> 
+      <!-- fin boton añadir cantidad cesta-->
+
+      <!-- boton editar -->
+      <div class="col-12" th:if="${!cesta}">
+        <button type="submit" class="btn btn-primary" th:text="#{producto.editar}">editar</button>
+      </div>
+
+    </form>
+      
+      <div th:replace="commons/footer :: footer" class="container"/>
+</body>
+</html>

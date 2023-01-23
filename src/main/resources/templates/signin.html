@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<head th:replace="commons/header :: header"/>
+
+<body>
+
+  <form class="row g-3" method="post" th:action="@{/login/login}">
+    <div class="mb-3 row">
+    <label for="inputNombre" class="col-sm-2 col-form-label">Nombre</label>
+    <div class="col-sm-3">
+      <input type="text" class="form-control" id="nombre" name="nombre">
+    </div>
+  </div>
+  <div class="mb-3 row">
+    <label for="inputPassword" class="col-sm-2 col-form-label">Password</label>
+    <div class="col-sm-3">
+      <input type="password" class="form-control" id="password" name="password">
+    </div>
+  </div>
+  <div class="col-12">
+    <button type="submit" class="btn btn-primary">guardar</button>
+  </div>
+  <label class="col-sm-2 col-form-label">sin sesión</label>
+</form>
+
+  <div th:replace="commons/footer :: footer" class="container"/>
+
+</body>
+</html>

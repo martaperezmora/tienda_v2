@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="es" xmlsn:th="http://www.thymeleaf.org">
+
+<head th:replace="commons/header :: header"/>
+<body>
+    <!-- menu -->
+    <div th:replace="commons/menu :: menu"/>
+    
+    <!-- formulario -->
+    <form class="row g-3" th:action="@{/vendedores/modificar}" method="post">
+        <div class="col-md-1">
+            <label for="codigo" class="form-label" th:text="#{vendedor.codigo}">Código</label>
+            <input type="number" class="form-control" id="codigo" name="codigo" min="0" th:value="${vendedor.codigo}">
+          </div>
+
+        <div class="col-md-3">
+          <label for="nombre" class="form-label" th:text="#{vendedor.nombre}">Nombre</label>
+          <input type="text" class="form-control" id="nombre" name="nombre" th:value="${vendedor.nombre}" autofocus>
+        </div>
+
+        <div class="col-md-3">
+            <label for="apellidos" class="form-label" th:text="#{vendedor.apellidos}">Apellidos</label>
+            <input type="text" class="form-control" id="apellidos" name="apellidos" th:value="${vendedor.apellidos}">
+        </div>
+
+        <div class="col-md-3">
+          <label for="puesto" class="form-label" th:text="#{vendedor.puesto}">Puesto</label>
+          <input type="text" class="form-control" id="puesto" name="puesto" th:value="${vendedor.puesto}">
+      </div>
+
+        <div class="col-12">
+          <button type="submit" class="btn btn-primary" th:text="#{vendedor.editar}">editar</button>
+        </div>
+
+      </form>
+    
+    <!-- pie -->
+    <div th:replace="commons/footer :: footer" class="container"/>
+  
+  </body>
+  
+  </html>

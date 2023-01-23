@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="es" xmlsn:th="http://www.thymeleaf.org">
+
+<head th:replace="commons/header :: header"/>
+<body>
+    <div th:replace="commons/menu :: menu"/>
+    <a th:href="@{/proveedores/nuevo}" class="btn btn-primary" th:text="#{proveedor.nuevo}">nuevo proveedor</a>
+    
+    <table class="table">
+        <thead>
+          <tr>
+            <th scope="col" th:text="#{proveedor.codigo}">codigo</th>
+            <th scope="col" th:text="#{proveedor.nombre}">Nombre</th>
+            <th scope="col" th:text="#{proveedor.apellidos}">Apellidos</th>
+            <th scope="col"></th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr th:each="proveedor : ${proveedores}" >
+            <th scope="row" th:text="${proveedor.codigo}"></th>
+            <td th:text="${proveedor.nombre}">Nombre</td>
+            <td th:text="${proveedor.apellidos}">apellidos</td>
+            <td>
+                <a th:href="@{/proveedores/editar/}+${proveedor.codigo}" class="btn btn-primary" th:text="#{proveedor.editar}">editar</a>
+                <a th:href="@{/proveedores/borrar/}+${proveedor.codigo}" class="btn btn-danger" th:text="#{proveedor.borrar}">borrar</a>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+
+    <div class="row">
+      <div th:replace="commons/pagination :: pagination">
+    </div>
+
+    <div th:replace="commons/footer :: footer" class="container"/>
+  
+  </body>
+  
+  </html>

@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="es" xmlsn:th="http://www.thymeleaf.org">
+
+<head th:replace="commons/header :: header"/>
+<body>
+    <div th:replace="commons/menu :: menu"/>
+    <a th:href="@{/vendedores/nuevo}" class="btn btn-primary" th:text="#{vendedor.nuevo}">nuevo vendedor</a>
+    
+    <table class="table">
+        <thead>
+          <tr>
+            <th scope="col" th:text="#{vendedor.codigo}">codigo</th>
+            <th scope="col" th:text="#{vendedor.nombre}">Nombre</th>
+            <th scope="col" th:text="#{vendedor.apellidos}">Apellidos</th>
+            <th scope="col" th:text="#{vendedor.puesto}">Puesto</th>
+            <th scope="col"></th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr th:each="vendedor : ${vendedores}" >
+            <th scope="row" th:text="${vendedor.codigo}"></th>
+            <td th:text="${vendedor.nombre}">Nombre</td>
+            <td th:text="${vendedor.apellidos}">apellidos</td>
+            <td th:text="${vendedor.puesto}">puesto</td>
+            <td>
+                <a th:href="@{/vendedores/editar/}+${vendedor.codigo}" class="btn btn-primary" th:text="#{vendedor.editar}">editar</a>
+                <a th:href="@{/vendedores/borrar/}+${vendedor.codigo}" class="btn btn-danger" th:text="#{vendedor.borrar}">borrar</a>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+  
+      <!-- nav -->
+      <div class="row">
+        <div class="col-12">
+          <nav aria-label="Page navigation example">
+            <ul class="pagination">
+              <li class="page-item"><a class="page-link" href="#">Previous</a></li>
+              <li class="page-item"><a class="page-link" href="#">1</a></li>
+              <li class="page-item"><a class="page-link" href="#">2</a></li>
+              <li class="page-item"><a class="page-link" href="#">3</a></li>
+              <li class="page-item"><a class="page-link" href="#">Next</a></li>
+            </ul>
+          </nav>
+        </div>
+      </div>
+    </div>
+    <div th:replace="commons/footer :: footer" class="container"/>
+  
+  </body>
+  
+  </html>

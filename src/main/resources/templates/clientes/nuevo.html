@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="es" xmlsn:th="http://www.thymeleaf.org">
+
+<head th:replace="commons/header :: header"/>
+<body>
+    <!-- menu -->
+    <div th:replace="commons/menu :: menu"/>
+    
+    <!-- formulario -->
+    <form class="row g-3" method="post" th:action="@{/clientes/guardar}">
+      <!--
+        <div class="col-md-1">
+          <label for="codigo" class="form-label" th:text="#{cliente.codigo}">Código</label>
+          <input type="number" class="form-control" id="codigo" name="codigo" min="0">
+        </div>
+        -->
+
+        <div class="col-md-3">
+          <label for="nombre" class="form-label" th:text="#{cliente.nombre}">Nombre</label>
+          <input type="text" class="form-control" id="nombre" name="nombre" autofocus>
+        </div>
+
+        <div class="col-md-3">
+          <label for="apellidos" class="form-label" th:text="#{cliente.apellidos}">Apellidos</label>
+          <input type="text" class="form-control" id="apellidos" name="apellidos">
+        </div>
+
+        <div class="col-5">
+          <label for="email" class="form-label" th:text="#{cliente.email}">Email</label>
+          <input type="email" class="form-control" id="email"  name="email">
+        </div>
+
+        <div class="col-md-3">
+          <label for="dni" class="form-label" th:text="#{cliente.dni}">DNI</label>
+          <input type="text" class="form-control" id="dni" name="dni">
+          </div>
+  
+          <div class="col-md-3">
+            <label for="telefono" class="form-label" th:text="#{cliente.telefono}">Teléfono</label>
+            <input type="tel" class="form-control" id="telefono" name="telefono">
+          </div>
+
+        <div class="col-12">
+          <label for="direccion" class="form-label" th:text="#{cliente.direccion}">Dirección</label>
+          <input type="text" class="form-control" id="direccion" name="direccion">
+        </div>
+
+        <div class="col-12">
+          <div class="form-check">
+            <input class="form-check-input" type="checkbox" id="vip" name="vip">
+            <label class="form-check-label" for="vip" th:text="#{cliente.vip}">
+              VIP
+            </label>
+          </div>
+        </div>
+
+        <div class="col-12">
+          <button type="submit" class="btn btn-primary">guardar</button>
+        </div>
+
+      </form>
+    
+    <!-- pie -->
+    <div th:replace="commons/footer :: footer" class="container"/>
+  
+  </body>
+  
+  </html>

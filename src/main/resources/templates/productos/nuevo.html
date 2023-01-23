@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="es" xmlsn:th="http://www.thymeleaf.org">
+  <head th:replace="commons/header :: header"/>
+<body>
+    <div th:replace="commons/menu :: menu"/>
+    <form class="row g-3" th:action="@{/productos/guardar}" method="post" enctype="multipart/form-data">
+      <div class="col-md-3">
+        <label for="nombre" class="form-label" th:text="#{producto.nombre}">Nombre</label>
+        <input type="text" class="form-control" id="nombre" name="nombre" autofocus>
+      </div>
+
+      <div class="col-md-3">
+          <label for="descripcion" class="form-label" th:text="#{producto.descripcion}">Descripción</label>
+          <textarea class="form-control" id="descripcion" name="descripcion" rows="3"></textarea>
+      </div>
+
+      <div class="col-md-3">
+        <label for="precio" class="form-label" th:text="#{producto.precio}">Precio</label>
+        <input type="text" class="form-control" id="precio" name="precio">
+      </div>
+
+      <div class="mb-3">
+        <label for="imagenForm" class="form-label">Imagen</label>
+        <input class="form-control" type="file" name="imagenForm" id="imagenForm">
+      </div>
+
+      <div class="col-12">
+        <button type="submit" class="btn btn-primary" th:text="#{producto.nuevo}">nuevo</button>
+      </div>
+
+    </form>
+      
+      <div th:replace="commons/footer :: footer" class="container"/>
+</body>
+</html>

@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="es" xmlsn:th="http://www.thymeleaf.org">
+
+<head th:replace="commons/header :: header" />
+
+<body>
+  <div th:replace="commons/menu :: menu" />
+
+  <a th:href="@{/productos/nuevo}" class="btn btn-primary" th:text="#{producto.nuevo}">nuevo producto</a>
+
+  <!-- cards -->
+  <div class="container">
+    <div class="row">
+      <div th:each="producto : ${productos}" class="col-3">
+        <div class="card" style="width: 18rem;">
+          <img th:src="'data:image/jpeg;base64,' + ${producto.imageView}" class="card-img-top" alt="...">
+          <div class="card-body">
+            <h5 th:text="${producto.nombre}" class="card-title"></h5>
+            <p th:text="${producto.descripcion}" class="card-text"></p>
+            <p th:text="${producto.precio}" class="card-text"></p>
+            <a class="btn btn-primary" th:href="@{/productos/edit/{codigo}/true(codigo=${producto.codigo})}" href="#" role="button">cesta</i></a>
+            <!--<a href="producto.html" th:href="@{/productos/edit/}+${producto.codigo}" class="btn btn-primary">editar</a>-->
+            <a href="producto.html" th:href="@{/productos/edit/{codigo}/false(codigo=${producto.codigo})}" class="btn btn-primary">editar</a>
+            <a href="producto.html" th:href="@{/productos/borrar/}+${producto.codigo}" class="btn btn-danger">borrar</a>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="row">
+      <div th:replace="commons/pagination :: pagination">
+    </div>
+
+    <div th:replace="commons/footer :: footer" class="container" />
+
+</body>
+
+</html>
