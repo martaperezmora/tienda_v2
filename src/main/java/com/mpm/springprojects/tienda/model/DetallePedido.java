@@ -1,10 +1,26 @@
 package com.mpm.springprojects.tienda.model;
 
+import javax.persistence.Entity;
+import javax.persistence.FetchType;
+import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
+import javax.persistence.ManyToOne;
+import javax.persistence.MapsId;
+
+@Entity
 public class DetallePedido {
+    @Id
+    @GeneratedValue
     private int codigo;
     private int cantidad;
     private float total;
+    @ManyToOne(fetch = FetchType.LAZY, optional = true)
+    @MapsId("producto_codigo")
     private Producto producto;
+
+    @ManyToOne(fetch = FetchType.LAZY, optional = true)
+    @MapsId("pedido_codigo")
+    private Pedido pedido;
 
     public DetallePedido() {
     }

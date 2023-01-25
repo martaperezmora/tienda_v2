@@ -13,8 +13,10 @@ import com.mpm.springprojects.tienda.dao.DetallePedidoDAO;
 import com.mpm.springprojects.tienda.dao.PedidosDAO;
 import com.mpm.springprojects.tienda.model.Cliente;
 import com.mpm.springprojects.tienda.model.DetallePedido;
+import com.mpm.springprojects.tienda.model.DetallePedidoId;
 import com.mpm.springprojects.tienda.model.Pedido;
 import com.mpm.springprojects.tienda.repository.ClienteRepository;
+import com.mpm.springprojects.tienda.repository.DetallePedidoRepository;
 import com.mpm.springprojects.tienda.repository.PedidoRepository;
 import com.mpm.springprojects.tienda.services.PedidosService;
 
@@ -25,7 +27,7 @@ public class PedidosServiceImpl implements PedidosService{
     PedidoRepository pedidoRepository;
  
     @Autowired
-    DetallePedidoDAO detallePedidoDAO;
+    DetallePedidoRepository detallePedidoRepository;
 
     @Autowired
     ClienteRepository clienteRepository;
@@ -53,7 +55,9 @@ public class PedidosServiceImpl implements PedidosService{
     public Pedido findById(int codigo) {
         Optional<Pedido> findById = pedidoRepository.findById(codigo);
         if(findById != null){
-            return findById.get();
+            Pedido pedido = findById.get();
+            pedido.setDetallePedidos(detallePedidoRepository.findByPedidoCodigo(pedido.getCodigo()));
+            return pedido;
         }
         return null;
     }
@@ -62,12 +66,13 @@ public class PedidosServiceImpl implements PedidosService{
     public void insert(Pedido pedido) {
         
         pedidoRepository.save(pedido);
-        /* 
+        
         List<DetallePedido> detallePedidos = pedido.getDetallePedidos();
         for (DetallePedido detallePedido : detallePedidos) {
-            detallePedidoDAO.insert(pedido, detallePedido);
+            DetallePedidoId id = new DetallePedidoId(pedido.getCodigo(), )
+
         }
-        */
+        
     }
 
     @Override
