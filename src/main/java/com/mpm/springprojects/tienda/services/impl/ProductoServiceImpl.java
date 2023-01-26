@@ -7,7 +7,6 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
-import com.mpm.springprojects.tienda.dao.ProductosDAO;
 import com.mpm.springprojects.tienda.model.Producto;
 import com.mpm.springprojects.tienda.repository.ProductoRepository;
 import com.mpm.springprojects.tienda.services.ProductosService;
@@ -39,13 +38,11 @@ public class ProductoServiceImpl implements ProductosService {
 
     @Override
     public void update(Producto producto) {
-
-        if(producto.getImagen() == null){
-            Producto productoBd = findById(producto.getCodigo());
-            if(productoBd.getImagen() != null){
-                producto.setImagen(productoBd.getImagen());
-            }
+         
+        if(producto.getImagen() == null || producto.getImagen().length == 0){
+            producto.setImagen(this.findById(producto.getCodigo()).getImagen());
         }
+
         productoRepository.save(producto);
     }
 

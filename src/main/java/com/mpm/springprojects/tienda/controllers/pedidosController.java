@@ -16,14 +16,10 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 
-import com.mpm.springprojects.tienda.model.Cliente;
-import com.mpm.springprojects.tienda.model.DetallePedido;
 import com.mpm.springprojects.tienda.model.Pedido;
-import com.mpm.springprojects.tienda.services.ClientesService;
 import com.mpm.springprojects.tienda.services.PedidosService;
 
 // lista historial de pedidos
@@ -112,7 +108,7 @@ public class pedidosController {
             pedidosService.delete(codigo);
 
             ModelAndView modelAndView = new ModelAndView();
-            modelAndView.setViewName("redirect:lista");  // volvemos al listado de pedidos
+            modelAndView.setViewName("redirect:../lista");  // volvemos al listado de pedidos
 
             return modelAndView;
         }

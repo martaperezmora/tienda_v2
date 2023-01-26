@@ -69,18 +69,6 @@ public class ProductoController {
 
         return modelAndView;
     }
-    /*
-     * @RequestMapping(value="/list")
-     * public ModelAndView list(){
-     * List<Producto> productos = productosService.findAll();
-     * ModelAndView modelAndView = new ModelAndView();
-     * 
-     * modelAndView.addObject("productos", productos);
-     * modelAndView.setViewName("productos/list");
-     * 
-     * return modelAndView;
-     * }
-     */
 
     @RequestMapping(value = { "/nuevo" })
     public ModelAndView nuevo() {
@@ -101,10 +89,7 @@ public class ProductoController {
 
         productosService.insert(producto);
 
-        // List<Producto> productos = productosService.findAll();
-        // modelAndView.addObject("productos", productos);
-
-        modelAndView.setViewName("redirect:edit/" + producto.getCodigo());
+        modelAndView.setViewName("redirect:edit/" + producto.getCodigo() + "/false");
 
         return modelAndView;
     }
@@ -180,21 +165,4 @@ public class ProductoController {
             return modelAndView;
     }
 
-
-    // private Producto getProducto(int codigo){
-    // List<Producto> productos = getProductos();
-    // int indexOf = productos.indexOf(new Producto(codigo));
-
-    // return productos.get(indexOf);
-    // }
-
-    // private List<Producto> getProductos() {
-    // ArrayList<Producto> productos = new ArrayList<Producto>();
-    // productos.add(new Producto(12332, "Coca-Cola", "/img/cola.png"));
-    // productos.add(new Producto(15452, "Pepsi", "/img/pepsi.png"));
-    // productos.add(new Producto(12354, "Fanta", "/img/fanta.jpg"));
-    // productos.add(new Producto(434343, "Sprite", ""));
-
-    // return productos;
-    // }
 }

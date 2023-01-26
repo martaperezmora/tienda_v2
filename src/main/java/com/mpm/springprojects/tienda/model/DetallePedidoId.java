@@ -1,9 +1,11 @@
 package com.mpm.springprojects.tienda.model;
 
+import java.io.Serializable;
+
 import javax.persistence.Embeddable;
 
 @Embeddable
-public class DetallePedidoId {
+public class DetallePedidoId implements Serializable{
     
     private int pedido_codigo;
     private int producto_codigo;

@@ -3,15 +3,13 @@ package com.mpm.springprojects.tienda.services.impl;
 import java.util.List;
 import java.util.Optional;
 
+import javax.transaction.Transactional;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
-import com.mpm.springprojects.tienda.dao.ClientesDAO;
-import com.mpm.springprojects.tienda.dao.DetallePedidoDAO;
-import com.mpm.springprojects.tienda.dao.PedidosDAO;
-import com.mpm.springprojects.tienda.model.Cliente;
 import com.mpm.springprojects.tienda.model.DetallePedido;
 import com.mpm.springprojects.tienda.model.DetallePedidoId;
 import com.mpm.springprojects.tienda.model.Pedido;
@@ -37,20 +35,6 @@ public class PedidosServiceImpl implements PedidosService{
         return pedidoRepository.findAll(pageable);
     }
 
-    /* 
-    @Override
-    public Pedido findById(int codigo) {
-        Optional<Pedido> pedido = pedidoRepository.findById(codigo);
-
-        Cliente cliente = clienteRepository.findById(pedido.getCliente().getCodigo());
-
-        pedido.setCliente(cliente);
-
-        List<DetallePedido> detalle = detallePedidoDAO.findDetalle(pedido);
-        pedido.setDetallePedidos(detalle);
-        
-        return pedido;
-    }*/
     @Override
     public Pedido findById(int codigo) {
         Optional<Pedido> findById = pedidoRepository.findById(codigo);
@@ -66,13 +50,14 @@ public class PedidosServiceImpl implements PedidosService{
     public void insert(Pedido pedido) {
         
         pedidoRepository.save(pedido);
-        
+
         List<DetallePedido> detallePedidos = pedido.getDetallePedidos();
         for (DetallePedido detallePedido : detallePedidos) {
-            DetallePedidoId id = new DetallePedidoId(pedido.getCodigo(), )
-
+            DetallePedidoId id = new DetallePedidoId(pedido.getCodigo(), detallePedido.getProducto().getCodigo());
+            detallePedido.setId(id);
+            detallePedido.setPedido(pedido);
+            detallePedidoRepository.save(detallePedido);
         }
-        
     }
 
     @Override
@@ -80,10 +65,12 @@ public class PedidosServiceImpl implements PedidosService{
         pedidoRepository.save(pedido);
      }
 
-    @Override
-    public void delete(int codigo) {
-        pedidoRepository.deleteById(codigo);        
-    }
+     @Override
+     @Transactional
+     public void delete(int codigo) {
+         detallePedidoRepository.deleteByPedidoCodigo(codigo);
+         pedidoRepository.deleteById(codigo);        
+     }
 }
 
 
