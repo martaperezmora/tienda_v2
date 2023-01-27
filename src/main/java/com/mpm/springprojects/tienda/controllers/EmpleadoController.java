@@ -20,7 +20,7 @@ import com.mpm.springprojects.tienda.model.Empleado;
 import com.mpm.springprojects.tienda.services.EmpleadoService;
 
 @Controller
-@RequestMapping("/empleado")
+@RequestMapping("/empleados")
 public class EmpleadoController {
     
     @Autowired
@@ -49,7 +49,7 @@ public class EmpleadoController {
 
         List<Empleado> empleado = page.getContent();
 
-        ModelAndView modelAndView = new ModelAndView("empleado/list");
+        ModelAndView modelAndView = new ModelAndView("empleados/list");
         modelAndView.addObject("empleado", empleado);
 
         modelAndView.addObject("numPage", numPage);
@@ -65,7 +65,7 @@ public class EmpleadoController {
     @RequestMapping(value= {"/nuevo"})
     public ModelAndView nuevo(){
         ModelAndView modelAndView = new ModelAndView();
-        modelAndView.setViewName("empleado/nuevo");
+        modelAndView.setViewName("empleados/nuevo");
 
         return modelAndView;
     }
@@ -84,7 +84,7 @@ public class EmpleadoController {
         ModelAndView modelAndView = new ModelAndView();
         Empleado empleado = empleadoService.findById(codigo);
         modelAndView.addObject("empleado", empleado);
-        modelAndView.setViewName("empleado/editar");
+        modelAndView.setViewName("empleados/editar");
 
         return modelAndView;
 
@@ -105,7 +105,7 @@ public class EmpleadoController {
         ModelAndView modelAndView = new ModelAndView();
 
         empleadoService.delete(codigo);
-        modelAndView.setViewName("redirect:/empleado/list");
+        modelAndView.setViewName("redirect:/empleados/list");
         
         return modelAndView;
     }

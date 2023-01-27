@@ -20,7 +20,7 @@ import com.mpm.springprojects.tienda.model.Departamento;
 import com.mpm.springprojects.tienda.services.DepartamentoService;
 
 @Controller
-@RequestMapping("/departamento")
+@RequestMapping("/departamentos")
 public class DepartamentoController {
     
     @Autowired
@@ -49,7 +49,7 @@ public class DepartamentoController {
 
         List<Departamento> departamento = page.getContent();
 
-        ModelAndView modelAndView = new ModelAndView("departamento/list");
+        ModelAndView modelAndView = new ModelAndView("departamentos/list");
         modelAndView.addObject("departamento", departamento);
 
         modelAndView.addObject("numPage", numPage);
@@ -65,7 +65,7 @@ public class DepartamentoController {
     @RequestMapping(value= {"/nuevo"})
     public ModelAndView nuevo(){
         ModelAndView modelAndView = new ModelAndView();
-        modelAndView.setViewName("departamento/nuevo");
+        modelAndView.setViewName("departamentos/nuevo");
 
         return modelAndView;
     }
@@ -84,7 +84,7 @@ public class DepartamentoController {
         ModelAndView modelAndView = new ModelAndView();
         Departamento departamento = departamentoService.findById(codigo);
         modelAndView.addObject("departamento", departamento);
-        modelAndView.setViewName("departamento/editar");
+        modelAndView.setViewName("departamentos/editar");
 
         return modelAndView;
 
@@ -105,7 +105,7 @@ public class DepartamentoController {
         ModelAndView modelAndView = new ModelAndView();
 
         departamentoService.delete(codigo);
-        modelAndView.setViewName("redirect:/departamento/list");
+        modelAndView.setViewName("redirect:/departamentos/list");
         
         return modelAndView;
     }

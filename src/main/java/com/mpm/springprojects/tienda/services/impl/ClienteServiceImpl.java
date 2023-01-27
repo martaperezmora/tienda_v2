@@ -7,12 +7,10 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
-import com.mpm.springprojects.tienda.dao.ClientesDAO;
 import com.mpm.springprojects.tienda.model.Cliente;
 import com.mpm.springprojects.tienda.repository.ClienteRepository;
 import com.mpm.springprojects.tienda.services.ClientesService;
 
-// código para usar el repository
 @Service
 public class ClienteServiceImpl implements ClientesService {
 

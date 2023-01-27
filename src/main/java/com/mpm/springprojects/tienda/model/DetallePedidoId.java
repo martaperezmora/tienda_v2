@@ -31,5 +31,30 @@ public class DetallePedidoId implements Serializable{
         this.producto_codigo = producto_codigo;
     }
 
+    @Override
+    public int hashCode() {
+        final int prime = 31;
+        int result = 1;
+        result = prime * result + pedido_codigo;
+        result = prime * result + producto_codigo;
+        return result;
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (this == obj)
+            return true;
+        if (obj == null)
+            return false;
+        if (getClass() != obj.getClass())
+            return false;
+        DetallePedidoId other = (DetallePedidoId) obj;
+        if (pedido_codigo != other.pedido_codigo)
+            return false;
+        if (producto_codigo != other.producto_codigo)
+            return false;
+        return true;
+    }
+
     
 }
