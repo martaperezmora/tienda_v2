@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="es" xmlsn:th="http://www.thymeleaf.org">
+
+<head th:replace="commons/header :: header" />
+
+<body>
+  <div th:replace="commons/menu :: menu" />
+
+  <!-- boton nuevo departamento -->
+  <a th:href="@{/departamentos/nuevo}" class="btn btn-primary" >nuevo departamento</a>
+
+  <!-- lista departamentos -->
+  <table class="table">
+    <thead>
+      <tr>
+        <th scope="col" >codigo</th>
+        <th scope="col" >Nombre</th>
+        <th scope="col"></th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr th:each="departamento : ${departamentos}">
+        <th scope="row" th:text="${departamento.codigo}"></th>
+        <td th:text="${departamento.nombre}">Nombre</td>
+        <td>
+          <a th:href="@{/departamentos/editar/}+${departamento.codigo}" class="btn btn-primary"
+            th:text="#{departamento.editar}">editar</a>
+          <a th:href="@{/departamentos/borrar/}+${departamento.codigo}" class="btn btn-danger"
+            th:text="#{departamento.borrar}">borrar</a>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+
+  <!-- nav -->
+  <div class="row">
+    <div th:replace="commons/pagination :: pagination">
+  </div>
+
+  <div th:replace="commons/footer :: footer" class="container" />
+
+</body>
+
+</html>

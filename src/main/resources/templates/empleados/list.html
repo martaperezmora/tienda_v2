@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="es" xmlsn:th="http://www.thymeleaf.org">
+
+<head th:replace="commons/header :: header" />
+
+<body>
+  <div th:replace="commons/menu :: menu" />
+
+  <!-- boton nuevo empleado -->
+  <a th:href="@{/empleados/nuevo}" class="btn btn-primary" >nuevo empleado</a>
+
+  <!-- lista empleados -->
+  <table class="table">
+    <thead>
+      <tr>
+        <th scope="col" >codigo</th>
+        <th scope="col" >Nombre</th>
+        <th scope="col" >Apellidos</th>
+        <th scope="col" >Email</th>
+        <th scope="col" >Dni</th>
+        <th scope="col" >Teléfono</th>
+        <th scope="col" >Dirección</th>
+        <th scope="col" >VIP</th>
+        <th scope="col"></th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr th:each="empleado : ${empleados}">
+        <th scope="row" th:text="${empleado.codigo}"></th>
+        <td th:text="${empleado.nombre}">Nombre</td>
+        <td th:text="${empleado.apellidos}">apellidos</td>
+        <td th:text="${empleado.email}">@email</td>
+        <td th:text="${empleado.dni}">dni</td>
+        <td th:text="${empleado.telefono}">tel</td>
+        <td th:text="${empleado.direccion}">dir</td>
+        <td>
+          <a th:href="@{/empleados/editar/}+${empleado.codigo}" class="btn btn-primary"
+            th:text="#{empleado.editar}">editar</a>
+          <a th:href="@{/empleados/borrar/}+${empleado.codigo}" class="btn btn-danger"
+            th:text="#{empleado.borrar}">borrar</a>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+
+  <!-- nav -->
+  <div class="row">
+    <div th:replace="commons/pagination :: pagination">
+  </div>
+
+  <div th:replace="commons/footer :: footer" class="container" />
+
+</body>
+
+</html>

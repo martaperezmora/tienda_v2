@@ -16,15 +16,15 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 
-import com.mpm.springprojects.tienda.model.Empleado;
-import com.mpm.springprojects.tienda.services.EmpleadoService;
+import com.mpm.springprojects.tienda.model.Departamento;
+import com.mpm.springprojects.tienda.services.DepartamentoService;
 
 @Controller
-@RequestMapping("/empleado")
-public class EmpleadoController {
+@RequestMapping("/departamento")
+public class DepartamentoController {
     
     @Autowired
-    EmpleadoService empleadoService;
+    DepartamentoService departamentoService;
 
     @Value("${pagination.size}")
     int sizePage;
@@ -45,12 +45,12 @@ public class EmpleadoController {
         Pageable pageable = PageRequest.of(numPage - 1, sizePage,
                 directionSort.equals("asc") ? Sort.by(fieldSort).ascending() : Sort.by(fieldSort).descending());
 
-        Page<Empleado> page = empleadoService.findAll(pageable);
+        Page<Departamento> page = departamentoService.findAll(pageable);
 
-        List<Empleado> empleado = page.getContent();
+        List<Departamento> departamento = page.getContent();
 
-        ModelAndView modelAndView = new ModelAndView("empleado/list");
-        modelAndView.addObject("empleado", empleado);
+        ModelAndView modelAndView = new ModelAndView("departamento/list");
+        modelAndView.addObject("departamento", departamento);
 
         modelAndView.addObject("numPage", numPage);
         modelAndView.addObject("totalPages", page.getTotalPages());
@@ -65,16 +65,16 @@ public class EmpleadoController {
     @RequestMapping(value= {"/nuevo"})
     public ModelAndView nuevo(){
         ModelAndView modelAndView = new ModelAndView();
-        modelAndView.setViewName("empleado/nuevo");
+        modelAndView.setViewName("departamento/nuevo");
 
         return modelAndView;
     }
 
     @PostMapping(path = {"/guardar"})
-    public ModelAndView guardar(Empleado empleado){
+    public ModelAndView guardar(Departamento departamento){
         ModelAndView modelAndView = new ModelAndView();
-        empleadoService.insert(empleado);
-        modelAndView.setViewName("redirect:editar/" + empleado.getCodigo());
+        departamentoService.insert(departamento);
+        modelAndView.setViewName("redirect:editar/" + departamento.getCodigo());
 
         return modelAndView;
     }
@@ -82,20 +82,20 @@ public class EmpleadoController {
     @GetMapping(path = {"/editar/{codigo}"})
     public ModelAndView editar(@PathVariable(name="codigo", required=true) int codigo){
         ModelAndView modelAndView = new ModelAndView();
-        Empleado empleado = empleadoService.findById(codigo);
-        modelAndView.addObject("empleado", empleado);
-        modelAndView.setViewName("empleado/editar");
+        Departamento departamento = departamentoService.findById(codigo);
+        modelAndView.addObject("departamento", departamento);
+        modelAndView.setViewName("departamento/editar");
 
         return modelAndView;
 
     }
 
     @PostMapping(path = {"/modificar"})
-    public ModelAndView modificar(Empleado empleado){
+    public ModelAndView modificar(Departamento departamento){
 
         ModelAndView modelAndView = new ModelAndView();
-        empleadoService.update(empleado);
-        modelAndView.setViewName("redirect:editar/" + empleado.getCodigo());
+        departamentoService.update(departamento);
+        modelAndView.setViewName("redirect:editar/" + departamento.getCodigo());
 
         return modelAndView;
     }
@@ -104,31 +104,9 @@ public class EmpleadoController {
     public ModelAndView borrar(@PathVariable(name="codigo", required=true) int codigo){
         ModelAndView modelAndView = new ModelAndView();
 
-        empleadoService.delete(codigo);
-        modelAndView.setViewName("redirect:/empleado/list");
+        departamentoService.delete(codigo);
+        modelAndView.setViewName("redirect:/departamento/list");
         
         return modelAndView;
     }
-/*
-    @GetMapping(value = "/añadirEmpleado/{codigo}")
-    public ModelAndView addEmpleado(
-        @PathVariable(name = "codigo", required = true) int codigo, HttpSession session) {
-
-            Empleado empleado = empleadoService.findById(codigo);
-
-            Pedido pedido = (Pedido) session.getAttribute("pedido");
-
-            if(pedido == null){
-                pedido = new Pedido();
-            }
-
-            pedido.setEmpleado(empleado);
-
-            session.setAttribute("pedido", pedido);
-
-            ModelAndView modelAndView = new ModelAndView();
-            modelAndView.setViewName("redirect:/cesta/editar");
-            return modelAndView;
-    }*/
-
 }
