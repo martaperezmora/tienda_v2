@@ -47,10 +47,10 @@ public class DepartamentoController {
 
         Page<Departamento> page = departamentoService.findAll(pageable);
 
-        List<Departamento> departamento = page.getContent();
+        List<Departamento> departamentos = page.getContent();
 
         ModelAndView modelAndView = new ModelAndView("departamentos/list");
-        modelAndView.addObject("departamento", departamento);
+        modelAndView.addObject("departamentos", departamentos);
 
         modelAndView.addObject("numPage", numPage);
         modelAndView.addObject("totalPages", page.getTotalPages());
@@ -83,6 +83,7 @@ public class DepartamentoController {
     public ModelAndView editar(@PathVariable(name="codigo", required=true) int codigo){
         ModelAndView modelAndView = new ModelAndView();
         Departamento departamento = departamentoService.findById(codigo);
+        
         modelAndView.addObject("departamento", departamento);
         modelAndView.setViewName("departamentos/editar");
 

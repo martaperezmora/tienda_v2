@@ -34,10 +34,8 @@
         <td th:text="${empleado.telefono}">tel</td>
         <td th:text="${empleado.direccion}">dir</td>
         <td>
-          <a th:href="@{/empleados/editar/}+${empleado.codigo}" class="btn btn-primary"
-            th:text="#{empleado.editar}">editar</a>
-          <a th:href="@{/empleados/borrar/}+${empleado.codigo}" class="btn btn-danger"
-            th:text="#{empleado.borrar}">borrar</a>
+          <a th:href="@{/empleados/editar/}+${empleado.codigo}" class="btn btn-primary">editar</a>
+          <a th:href="@{/empleados/borrar/}+${empleado.codigo}" class="btn btn-danger">borrar</a>
         </td>
       </tr>
     </tbody>

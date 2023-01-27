@@ -23,10 +23,8 @@
         <th scope="row" th:text="${departamento.codigo}"></th>
         <td th:text="${departamento.nombre}">Nombre</td>
         <td>
-          <a th:href="@{/departamentos/editar/}+${departamento.codigo}" class="btn btn-primary"
-            th:text="#{departamento.editar}">editar</a>
-          <a th:href="@{/departamentos/borrar/}+${departamento.codigo}" class="btn btn-danger"
-            th:text="#{departamento.borrar}">borrar</a>
+          <a th:href="@{/departamentos/editar/}+${departamento.codigo}" class="btn btn-primary">editar</a>
+          <a th:href="@{/departamentos/borrar/}+${departamento.codigo}" class="btn btn-danger">borrar</a>
         </td>
       </tr>
     </tbody>

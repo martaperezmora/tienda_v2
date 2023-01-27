@@ -47,10 +47,10 @@ public class EmpleadoController {
 
         Page<Empleado> page = empleadoService.findAll(pageable);
 
-        List<Empleado> empleado = page.getContent();
+        List<Empleado> empleados = page.getContent();
 
         ModelAndView modelAndView = new ModelAndView("empleados/list");
-        modelAndView.addObject("empleado", empleado);
+        modelAndView.addObject("empleados", empleados);
 
         modelAndView.addObject("numPage", numPage);
         modelAndView.addObject("totalPages", page.getTotalPages());
