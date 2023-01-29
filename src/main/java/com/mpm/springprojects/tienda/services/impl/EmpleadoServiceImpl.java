@@ -1,5 +1,6 @@
 package com.mpm.springprojects.tienda.services.impl;
 
+import java.util.List;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -17,6 +18,11 @@ public class EmpleadoServiceImpl implements EmpleadoService {
 
     @Autowired
     EmpleadoRepository empleadoRepository;
+
+    @Override
+    public List<Empleado> findAll() {
+        return empleadoRepository.findAll();
+    }
 
     @Override
     public Page<Empleado> findAll(Pageable page) {

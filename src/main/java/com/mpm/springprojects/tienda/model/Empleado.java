@@ -22,6 +22,8 @@ public class Empleado {
     private String dni;
     private String telefono;
     private String direccion;
+    @Transient
+    private boolean checked;
 
     @ManyToMany(mappedBy = "empleados")
     private List<Departamento> departamentos;
@@ -33,16 +35,15 @@ public class Empleado {
         this.codigo = codigo;
     }
 
-    public Empleado(int codigo, String nombre, String apellidos, String email, String dni, String telefono,
-            String direccion,
-            boolean vip) {
+    public Empleado(int codigo, String nombre, String apellidos, String telefono, String direccion, String email, boolean checked) {
         this.codigo = codigo;
         this.nombre = nombre;
         this.apellidos = apellidos;
-        this.email = email;
-        this.dni = dni;
         this.telefono = telefono;
         this.direccion = direccion;
+        this.email = email;
+        this.checked = checked;
+
     }
 
     public int getCodigo() {
@@ -99,6 +100,22 @@ public class Empleado {
 
     public void setDireccion(String direccion) {
         this.direccion = direccion;
+    }
+
+    public boolean isChecked() {
+        return checked;
+    }
+
+    public void setChecked(boolean checked) {
+        this.checked = checked;
+    }
+
+    public List<Departamento> getDepartamentos() {
+        return departamentos;
+    }
+
+    public void setDepartamentos(List<Departamento> departamentos) {
+        this.departamentos = departamentos;
     }
 
     @Override

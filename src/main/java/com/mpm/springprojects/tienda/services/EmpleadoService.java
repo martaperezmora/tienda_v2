@@ -1,5 +1,7 @@
 package com.mpm.springprojects.tienda.services;
 
+import java.util.List;
+
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 
@@ -9,6 +11,8 @@ public interface EmpleadoService {
     public Page<Empleado> findAll(Pageable page);
 
     public Empleado findById(int codigo);
+
+    public List<Empleado> findAll();
 
     public void insert(Empleado empleado);
 
