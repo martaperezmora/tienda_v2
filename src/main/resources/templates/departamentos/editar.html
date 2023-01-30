@@ -9,56 +9,46 @@
 
   <!-- formulario -->
   <form class="row g-3" th:action="@{/departamentos/modificar}" method="post">
-    
-      <input type="hidden" class="form-control" id="codigo" name="codigo" th:value="${departamento.codigo}">
 
-      <div class="col-md-3">
-        <label for="inputNombre" class="form-label">Nombre</label>
-        <input type="text" class="form-control" id="nombre" name="nombre" th:value="${departamento.nombre}" autofocus>
-      </div>
+    <input type="hidden" class="form-control" id="codigo" name="codigo" th:value="${departamento.codigo}">
 
-      <div class="mb-3">
-        <table class="table">
-            <thead>
-                <tr>
-                    <th scope="col"></th>
-                    <th scope="col">Código</th>
-                    <th scope="col">Nombre</th>
-                    <th scope="col">Apellidos</th>
-                </tr>
-            </thead>
-            <tbody>
-                <tr th:each="empleado : ${empleados}">
-                    <td th:if="${empleado.isChecked == true}">
-                        <input type="checkbox" name="check" th:id="${empleado.codigo}" checked>
-                        <label for="check">Empleado: </label>
-                    </td>
-                    <td th:unless="${empleado.isChecked == true}">
-                        <input type="checkbox" name="check" th:id="${empleado.codigo}">
-                        <label for="check">Empleado: </label>
-                    </td>
-                    <th scope="row" th:text="${empleado.codigo}"></th>
-                    <td th:text="${empleado.nombre}"></td>
-                    <td th:text="${empleado.apellidos}"></td>
-                </tr>
-
-            </tbody>
-        </table>
+    <div class="col-md-3">
+      <label for="inputNombre" class="form-label">Nombre</label>
+      <input type="text" class="form-control" id="nombre" name="nombre" th:value="${departamento.nombre}" autofocus>
     </div>
 
-<!--
-      <div class="col-12">
-        <div class="form-check">
-          <input class="form-check-input" type="checkbox" id="vip" name="vip" th:checked="${cliente.vip}">
-          <label class="form-check-label" for="gridCheck" th:text="#{cliente.vip}">
-            empleado
-          </label>
-        </div>
-      </div>-->
+    <div class="mb-3">
+      <table class="table">
+        <thead>
+          <tr>
+            <th scope="col"></th>
+            <th scope="col">Código</th>
+            <th scope="col">Nombre</th>
+            <th scope="col">Apellidos</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr th:each="empleado : ${empleados}">
+            <td th:if="${empleado.isChecked == true}">
+              <input type="checkbox" name="empleados" th:value="${empleado.codigo}" checked>
+              <label for="check">Empleado: </label>
+            </td>
+            <td th:unless="${empleado.isChecked == true}">
+              <input type="checkbox" name="empleados" th:value="${empleado.codigo}">
+              <label for="check">Empleado: </label>
+            </td>
+            <th scope="row" th:text="${empleado.codigo}"></th>
+            <td th:text="${empleado.nombre}"></td>
+            <td th:text="${empleado.apellidos}"></td>
+          </tr>
 
-      <div class="col-12">
-        <button type="submit" class="btn btn-primary">editar</button>
-      </div>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="col-12">
+      <button type="submit" class="btn btn-primary">editar</button>
+    </div>
 
   </form>
 

@@ -89,17 +89,17 @@ public class DepartamentoController {
         ModelAndView modelAndView = new ModelAndView();
         Departamento departamento = departamentoService.findById(codigo);
 
-        List<Empleado> todosEmpleados = empleadosService.findAll();
-        List<Empleado> empleadosDelDepartamento = departamento.getEmpleados();
+        List<Empleado> empleados = empleadosService.findAll();
+        List<Empleado> empleadosDep = departamento.getEmpleados();
 
-        for (Empleado empTodos : todosEmpleados) {
-            if (empleadosDelDepartamento.contains(empTodos)) {
+        for (Empleado empTodos : empleados) {
+            if (empleadosDep.contains(empTodos)) {
                 empTodos.setChecked(true);
             }
         }
         
         modelAndView.addObject("departamento", departamento);
-        modelAndView.addObject("empleados", todosEmpleados);
+        modelAndView.addObject("empleados", empleados);
         modelAndView.setViewName("departamentos/editar");
 
         return modelAndView;
