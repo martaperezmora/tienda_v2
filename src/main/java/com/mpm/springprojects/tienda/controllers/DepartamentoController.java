@@ -1,5 +1,6 @@
 package com.mpm.springprojects.tienda.controllers;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -14,6 +15,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.mpm.springprojects.tienda.model.Departamento;
@@ -70,6 +72,7 @@ public class DepartamentoController {
     @RequestMapping(value= {"/nuevo"})
     public ModelAndView nuevo(){
         ModelAndView modelAndView = new ModelAndView();
+        modelAndView.addObject("departamento", new Departamento());
         modelAndView.setViewName("departamentos/nuevo");
 
         return modelAndView;
@@ -89,24 +92,45 @@ public class DepartamentoController {
         ModelAndView modelAndView = new ModelAndView();
         Departamento departamento = departamentoService.findById(codigo);
 
-        List<Empleado> todosEmpleados = empleadosService.findAll();
-        List<Empleado> empleadosDelDepartamento = departamento.getEmpleados();
-
-        for (Empleado empTodos : todosEmpleados) {
-            if (empleadosDelDepartamento.contains(empTodos)) {
-                empTodos.setChecked(true);
+        List<Empleado> empleados = empleadosService.findAll();
+        for (Empleado empleado : empleados) {
+            if (departamento.getEmpleados().contains(empleado)){
+                empleado.setChecked(true);
             }
         }
+
         
         modelAndView.addObject("departamento", departamento);
-        modelAndView.addObject("empleados", todosEmpleados);
+        modelAndView.addObject("empleados", empleados);
         modelAndView.setViewName("departamentos/editar");
 
         return modelAndView;
 
     }
 
-    @PostMapping(path = {"/modificar"})
+    @PostMapping(path = { "/modificar" })
+    public ModelAndView update(Departamento departamento, @RequestParam(value="ck_empleados") int[] ck_empleados) {
+
+        List<Empleado> empleados = departamento.getEmpleados();
+        if(empleados == null){
+            empleados = new ArrayList<Empleado>();
+        }
+
+        for (int i : ck_empleados) {
+            Empleado a = new Empleado(i);
+            empleados.add(a);
+        }
+
+        departamento.setEmpleados(empleados);
+
+        departamentoService.update(departamento);
+
+        ModelAndView modelAndView = new ModelAndView();
+        modelAndView.setViewName("redirect:editar/" + departamento.getCodigo());
+        return modelAndView;
+    }
+
+    /*@PostMapping(path = {"/modificar"})
     public ModelAndView modificar(Departamento departamento){
 
         ModelAndView modelAndView = new ModelAndView();
@@ -114,7 +138,7 @@ public class DepartamentoController {
         modelAndView.setViewName("redirect:editar/" + departamento.getCodigo());
 
         return modelAndView;
-    }
+    }*/
 
     @GetMapping(path = {"/borrar/{codigo}"})
     public ModelAndView borrar(@PathVariable(name="codigo", required=true) int codigo){

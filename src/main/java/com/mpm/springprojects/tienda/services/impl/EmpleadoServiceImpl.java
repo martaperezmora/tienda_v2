@@ -20,13 +20,13 @@ public class EmpleadoServiceImpl implements EmpleadoService {
     EmpleadoRepository empleadoRepository;
 
     @Override
-    public List<Empleado> findAll() {
-        return empleadoRepository.findAll();
+    public Page<Empleado> findAll(Pageable page) {
+        return empleadoRepository.findAll(page);
     }
 
     @Override
-    public Page<Empleado> findAll(Pageable page) {
-        return empleadoRepository.findAll(page);
+    public List<Empleado> findAll() {
+        return empleadoRepository.findAll();
     }
 
     @Override

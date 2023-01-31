@@ -105,7 +105,7 @@ public class EmpleadoController {
         ModelAndView modelAndView = new ModelAndView();
 
         empleadoService.delete(codigo);
-        modelAndView.setViewName("redirect:/empleados/list");
+        modelAndView.setViewName("redirect:../list");
         
         return modelAndView;
     }
