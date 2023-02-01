@@ -9,6 +9,7 @@ import javax.persistence.Id;
 import javax.persistence.ManyToMany;
 import javax.persistence.Transient;
 
+
 @Entity
 public class Empleado {
 
@@ -25,6 +26,7 @@ public class Empleado {
     @Transient
     private boolean checked;
 
+    
     @ManyToMany(mappedBy = "empleados")
     private List<Departamento> departamentos;
 
