@@ -7,8 +7,14 @@
     <div th:replace="commons/menu :: menu"/>
     <h1 th:text="${bienvenido}">hola</h1>
 
-    <h3 th:text="#{saludar.usuario(${session.usuario.nombre})}"></h3>
+    <h3>bienvenido</h3>
 
+    <span sec:authorize="isAuthenticated()">
+        Usuario: <span sec:authentication="name"></span>
+        Roles: <span sec:authentication="principal.authorities"></span>
+        <a href="@{/logout}">sign out</a>    
+    </span>
+    
     <div th:replace="commons/footer :: footer" class="container"/>
 
 </body>

@@ -84,8 +84,8 @@
             <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
             <button class="btn btn-outline-success" type="submit" th:text="#{menu.buscar}">Search</button>
           </form>
-
-          <a class="navbar-nav" th:href="@{/login/logout}" th:text="${session.usuario.nombre}" style="margin-left: 1em;"></a>
+          
+          <a class="navbar-nav" th:href="@{/logout}" style="margin-left: 1em;">log out</a>
           
         </div>
       </div>
