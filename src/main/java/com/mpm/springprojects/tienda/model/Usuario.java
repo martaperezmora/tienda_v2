@@ -30,6 +30,21 @@ public class Usuario {
     @JoinTable(name = "usuario_permiso", joinColumns = @JoinColumn(name = "usuario_codigo"), inverseJoinColumns = @JoinColumn(name = "permiso_codigo"))
     private List<Permiso> permisos;
 
+    public Usuario() {
+    }
+
+    
+    public Usuario(long codigo) {
+        this.codigo = codigo;
+    }
+
+    public Usuario(long codigo, String nombre, String email, String password, List<Permiso> permisos) {
+        this.codigo = codigo;
+        this.nombre = nombre;
+        this.email = email;
+        this.password = password;
+        this.permisos = permisos;
+    }
 
 
     public long getCodigo() {

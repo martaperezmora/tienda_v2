@@ -8,5 +8,5 @@ import com.mpm.springprojects.tienda.model.Usuario;
 
 @Repository
 public interface UsuarioRepository extends JpaRepository<Usuario, Long> {
-    public Usuario findByName(String nombre);
+    public Usuario findByNombre(String nombre);
 }
