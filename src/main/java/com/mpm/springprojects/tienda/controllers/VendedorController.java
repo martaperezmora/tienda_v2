@@ -3,6 +3,7 @@ package com.mpm.springprojects.tienda.controllers;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.springframework.security.access.annotation.Secured;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -13,6 +14,7 @@ import org.springframework.web.servlet.ModelAndView;
 import com.mpm.springprojects.tienda.model.Vendedor;
 
 @Controller
+@Secured({"admin"})
 @RequestMapping("/vendedores")
 public class VendedorController {
     

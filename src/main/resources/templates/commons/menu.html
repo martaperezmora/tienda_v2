@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="es" xmlsn:th="http://www.thymeleaf.org">
+<html lang="es" xmlsn:th="http://www.thymeleaf.org" xmlns:sec="http:/www.thymeleaf.org/thymeleaf-extras-springsecurity5">
 
 <body>
   <div th:fragment="menu">
@@ -14,50 +14,30 @@
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
           <ul class="navbar-nav me-auto mb-2 mb-lg-0">
 
-            <li class="nav-item">
+            <li class="nav-item" sec:authorize="hasAnyAuthority('admin','producto')">
               <a class="nav-link" th:href="@{/productos/list}" href="productos.html"
-                th:text="#{menu.productos}">Productos</a>
+                th:text="#{menu.productos}" >Productos</a>
             </li>
 
-            <li class="nav-item">
+            <li class="nav-item" sec:authorize="hasAnyAuthority('admin','cliente')">
               <a class="nav-link" th:href="@{/clientes/list}" th:text="#{menu.clientes}">Clientes</a>
             </li>
 
-            <li class="nav-item">
+            <li class="nav-item" sec:authorize="hasAnyAuthority('admin','pedidos')">
               <a class="nav-link" th:href="@{/pedidos/lista}">Pedidos</a>
             </li>
 
-            <li class="nav-item">
+            <li class="nav-item" sec:authorize="hasAnyAuthority('admin','departamento')">
               <a class="nav-link" th:href="@{/departamentos/list}">Departamentos</a>
             </li>
 
-            <li class="nav-item">
+            <li class="nav-item" sec:authorize="hasAnyAuthority('admin','empleado')">
               <a class="nav-link" th:href="@{/empleados/list}">Empleados</a>
             </li>
 
-            <li class="nav-item">
+            <li class="nav-item" sec:authorize="hasAnyAuthority('admin','proveedor')">
               <a class="nav-link" th:href="@{/proveedores/lista}" th:text="#{menu.proveedores}">Proveedores</a>
             </li>
-            <!--
-            <li class="nav-item">
-              <a class="nav-link" th:href="@{/vendedores/lista}" th:text="#{menu.vendedores}">Vendedores</a>
-            </li>
-            -->
-
-            <!--
-            <li class="nav-item dropdown">
-              <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                Dropdown
-              </a>
-              <ul class="dropdown-menu">
-                <li><a class="dropdown-item" href="#">Action</a></li>
-                <li><a class="dropdown-item" href="#">Another action</a></li>
-                <li>
-                  <hr class="dropdown-divider">
-                </li>
-                <li><a class="dropdown-item" href="#">Something else here</a></li>
-              </ul>
-            </li> -->
           </ul>
 
           <ul class="navbar-nav">

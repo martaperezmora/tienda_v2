@@ -12,6 +12,7 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
+import org.springframework.security.access.annotation.Secured;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -28,6 +29,7 @@ import com.mpm.springprojects.tienda.model.Producto;
 import com.mpm.springprojects.tienda.services.ProductosService;
 
 @Controller
+@Secured("admin")
 @RequestMapping("/productos")
 public class ProductoController {
 
@@ -37,6 +39,7 @@ public class ProductoController {
     @Value("${pagination.size}")
     int sizePage;
 
+    @Secured({"admin"})
     @GetMapping(value = "/list")
     public ModelAndView list(Model model) {
         ModelAndView modelAndView = new ModelAndView();
@@ -44,6 +47,7 @@ public class ProductoController {
         return modelAndView;
     }
 
+    @Secured({"admin"})
     @GetMapping(value = "/list/{numPage}/{fieldSort}/{directionSort}")
     public ModelAndView listPage(Model model,
             @PathVariable("numPage") Integer numPage,
@@ -70,6 +74,7 @@ public class ProductoController {
         return modelAndView;
     }
 
+    @Secured({"admin"})
     @RequestMapping(value = { "/nuevo" })
     public ModelAndView nuevo() {
         ModelAndView modelAndView = new ModelAndView();
@@ -78,6 +83,7 @@ public class ProductoController {
         return modelAndView;
     }
 
+    @Secured({"admin"})
     @PostMapping(path = { "/guardar" })
     public ModelAndView guardar(Producto producto, @RequestParam("imagenForm") MultipartFile multipartFile)
             throws IOException {
@@ -94,6 +100,7 @@ public class ProductoController {
         return modelAndView;
     }
 
+    @Secured({"admin"})
     @GetMapping(path = { "/edit/{codigo}/{cesta}" })
     public ModelAndView editar(
         @PathVariable(name = "codigo", required = true) int codigo, @PathVariable(name = "cesta", required = false) boolean cesta) {
@@ -108,6 +115,7 @@ public class ProductoController {
     return modelAndView;
 }
 
+    @Secured({"admin"})
     @PostMapping(path = { "/modificar" })
     public ModelAndView modificar(Producto producto, @RequestParam("imagenForm") MultipartFile multipartFile)
             throws IOException {
@@ -123,6 +131,7 @@ public class ProductoController {
 
     }
 
+    @Secured({"admin"})
     @GetMapping(path = { "/borrar/{codigo}" })
     public ModelAndView borrar(@PathVariable(name = "codigo", required = true) int codigo) {
         ModelAndView modelAndView = new ModelAndView();
@@ -135,6 +144,7 @@ public class ProductoController {
         return modelAndView;
     }
 
+    @Secured({"admin"})
     @GetMapping(value = "/añadirCesta/{codigo}/{cantidad}")
     public ModelAndView añadirCesta(
         @PathVariable(name = "codigo", required = true) int codigo, @PathVariable(name = "cantidad", required = true) int cantidad,HttpSession session) {

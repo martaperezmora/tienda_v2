@@ -9,6 +9,7 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
+import org.springframework.security.access.annotation.Secured;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -24,6 +25,7 @@ import com.mpm.springprojects.tienda.services.DepartamentoService;
 import com.mpm.springprojects.tienda.services.EmpleadoService;
 
 @Controller
+@Secured({"admin"})
 @RequestMapping("/departamentos")
 public class DepartamentoController {
     

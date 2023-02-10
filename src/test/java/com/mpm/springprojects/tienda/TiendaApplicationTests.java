@@ -39,10 +39,40 @@ class TiendaApplicationTests {
 		login.setNombre("login");  // permiso para logear y entrar en la app, acceso solo a la pantalla de inicio
 		login.setCodigo(4);
 
+		Permiso producto = new Permiso();
+		login.setNombre("producto");
+		login.setCodigo(5);
+
+		Permiso proveedor = new Permiso();
+		login.setNombre("proveedor");
+		login.setCodigo(6);
+
+		Permiso vendedor = new Permiso();
+		login.setNombre("vendedor");
+		login.setCodigo(7);
+
+		Permiso cesta = new Permiso();
+		login.setNombre("cesta");
+		login.setCodigo(8);
+
+		Permiso empleado = new Permiso();
+		login.setNombre("empleado");
+		login.setCodigo(9);
+
+		Permiso departamento = new Permiso();
+		login.setNombre("departamento");
+		login.setCodigo(10);
+
 		permisoService.createPermiso(admin);
 		permisoService.createPermiso(pedidos);
 		permisoService.createPermiso(cliente);
 		permisoService.createPermiso(login);
+		permisoService.createPermiso(producto);
+		permisoService.createPermiso(proveedor);
+		permisoService.createPermiso(vendedor);
+		permisoService.createPermiso(cesta);
+		permisoService.createPermiso(empleado);
+		permisoService.createPermiso(departamento);
 
 		Usuario usuario1 = new Usuario();
 		usuario1.setCodigo(1);
