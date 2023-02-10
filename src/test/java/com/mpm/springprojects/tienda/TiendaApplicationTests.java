@@ -40,28 +40,28 @@ class TiendaApplicationTests {
 		login.setCodigo(4);
 
 		Permiso producto = new Permiso();
-		login.setNombre("producto");
-		login.setCodigo(5);
+		producto.setNombre("producto");
+		producto.setCodigo(5);
 
 		Permiso proveedor = new Permiso();
-		login.setNombre("proveedor");
-		login.setCodigo(6);
+		proveedor.setNombre("proveedor");
+		proveedor.setCodigo(6);
 
 		Permiso vendedor = new Permiso();
-		login.setNombre("vendedor");
-		login.setCodigo(7);
+		vendedor.setNombre("vendedor");
+		vendedor.setCodigo(7);
 
 		Permiso cesta = new Permiso();
-		login.setNombre("cesta");
-		login.setCodigo(8);
+		cesta.setNombre("cesta");
+		cesta.setCodigo(8);
 
 		Permiso empleado = new Permiso();
-		login.setNombre("empleado");
-		login.setCodigo(9);
+		empleado.setNombre("empleado");
+		empleado.setCodigo(9);
 
 		Permiso departamento = new Permiso();
-		login.setNombre("departamento");
-		login.setCodigo(10);
+		departamento.setNombre("departamento");
+		departamento.setCodigo(10);
 
 		permisoService.createPermiso(admin);
 		permisoService.createPermiso(pedidos);
@@ -103,21 +103,22 @@ class TiendaApplicationTests {
 		permisos1.add(admin);
 		permisos1.add(login);
 		usuario1.setPermisos(permisos1);
-		usuarioService.createUsuario(usuario1); // usuario1: admin, login
 
 		List<Permiso> permisos = new ArrayList<Permiso>();
 
 		permisos.add(login);
 		usuario4.setPermisos(permisos);
-		usuarioService.createUsuario(usuario4); // usuario4: login
 
 		permisos.add(pedidos);
 		usuario2.setPermisos(permisos);
-		usuarioService.createUsuario(usuario2); // usuario2: login, pedidos
 
 		permisos.add(cliente);
 		usuario3.setPermisos(permisos);
-		usuarioService.createUsuario(usuario3); // usuario3: login, pedidos, cliente
+
+		usuarioService.createUsuario(usuario1);
+		usuarioService.createUsuario(usuario2);
+		usuarioService.createUsuario(usuario3);
+		usuarioService.createUsuario(usuario4);
 
 	}
 

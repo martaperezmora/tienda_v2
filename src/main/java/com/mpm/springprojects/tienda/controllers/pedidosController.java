@@ -12,7 +12,7 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
-import org.springframework.security.access.annotation.Secured;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -25,8 +25,8 @@ import com.mpm.springprojects.tienda.services.PedidosService;
 
 // lista historial de pedidos
 @Controller
-@Secured({"admin", "pedidos"})
 @RequestMapping("/pedidos")
+@PreAuthorize("hasAnyAuthority('admin','pedidos')")
 public class pedidosController {
     @Autowired
     PedidosService pedidosService;

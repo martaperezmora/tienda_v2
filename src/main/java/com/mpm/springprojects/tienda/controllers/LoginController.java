@@ -2,7 +2,7 @@ package com.mpm.springprojects.tienda.controllers;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.MessageSource;
-import org.springframework.security.access.annotation.Secured;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 
@@ -14,7 +14,7 @@ public class LoginController {
         return "login";
     }
 
-    @Secured({ "login" })
+    //@PreAuthorize("hasAuthority('login')")
     @RequestMapping(value = { "/bienvenido" })
     public String bienvenido() {
         return "bienvenido";
