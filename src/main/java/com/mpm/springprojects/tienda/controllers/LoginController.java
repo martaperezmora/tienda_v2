@@ -14,7 +14,7 @@ public class LoginController {
         return "login";
     }
 
-    //@PreAuthorize("hasAuthority('login')")
+    @PreAuthorize("hasAuthority('login')")
     @RequestMapping(value = { "/bienvenido" })
     public String bienvenido() {
         return "bienvenido";

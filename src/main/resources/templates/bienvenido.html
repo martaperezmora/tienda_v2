@@ -12,7 +12,7 @@
     <span sec:authorize="isAuthenticated()">
         Usuario: <span sec:authentication="name"></span>
         Roles: <span sec:authentication="principal.authorities"></span>
-        <a href="@{/logout}">sign out</a>    
+        <a th:href="@{/logout}">sign out</a>    
     </span>
     
     <div th:replace="commons/footer :: footer" class="container"/>
