@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="es" xmlsn:th="http://www.thymeleaf.org">
+
+<head th:replace="commons/header :: header" />
+
+<body>
+  <div th:replace="commons/menu :: menu" />
+
+  <!-- boton nuevo contacto -->
+  <a th:href="@{/contactos/nuevo}" class="btn btn-primary" >nuevo contacto</a>
+
+  <!-- lista contactos -->
+  <table class="table">
+    <thead>
+      <tr>
+        <th scope="col" >codigo</th>
+        <th scope="col" >Nombre</th>
+        <th scope="col" >Email</th>
+        <th scope="col" >Teléfono</th>
+        <th scope="col"></th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr th:each="contacto : ${contactos}">
+        <th scope="row" th:text="${contacto.id}"></th>
+        <td th:text="${contacto.nombre}">Nombre</td>
+        <td th:text="${contacto.email}">@email</td>
+        <td th:text="${contacto.telefono}">tel</td>
+        <td>
+          <a th:href="@{/contactos/editar/}+${contacto.id}" class="btn btn-primary">editar</a>
+          <a th:href="@{/contactos/borrar/}+${contacto.id}" class="btn btn-danger">borrar</a>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+
+
+  <div th:replace="commons/footer :: footer" class="container" />
+
+</body>
+
+</html>
