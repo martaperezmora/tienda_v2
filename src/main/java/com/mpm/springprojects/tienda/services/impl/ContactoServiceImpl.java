@@ -36,12 +36,13 @@ public class ContactoServiceImpl implements ContactoService{
     @Override
     public void insert(Contacto contacto) {
         // TODO Auto-generated method stub
+        Contacto  contactoResponse = restTemplate.postForObject(urlAgenda, contacto, Contacto.class);
+        contacto.setId(contactoResponse.getId());
         
     }
 
     @Override
     public void update(Contacto contacto) {
-        //restTemplate.put(urlAgenda + "contactos/{id}", Contacto.class, contacto.getId());
         restTemplate.put(urlAgenda + "contactos/{id}", contacto, contacto.getId());
     }
 
