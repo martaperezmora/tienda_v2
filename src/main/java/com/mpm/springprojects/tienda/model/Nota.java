@@ -1,12 +1,17 @@
 package com.mpm.springprojects.tienda.model;
 
+import java.util.Date;
+
+import org.springframework.format.annotation.DateTimeFormat;
+
 public class Nota {
 
     private int codigo;
 
     private String titulo;
 
-    private String fecha;
+    @DateTimeFormat(pattern="dd/MM/yyyy")
+    private Date fecha;
 
     private String descripcion;
 
@@ -14,7 +19,7 @@ public class Nota {
         this.codigo = codigo;
     }
 
-    public Nota(int codigo, String titulo, String fecha, String descripcion) {
+    public Nota(int codigo, String titulo, Date fecha, String descripcion) {
         this.codigo = codigo;
         this.titulo = titulo;
         this.fecha = fecha;
@@ -48,11 +53,14 @@ public class Nota {
         this.descripcion = descripcion;
     }
 
+    
+
     @Override
     public int hashCode() {
         final int prime = 31;
         int result = 1;
         result = prime * result + codigo;
+        result = prime * result + ((titulo == null) ? 0 : titulo.hashCode());
         return result;
     }
 
@@ -67,14 +75,19 @@ public class Nota {
         Nota other = (Nota) obj;
         if (codigo != other.codigo)
             return false;
+        if (titulo == null) {
+            if (other.titulo != null)
+                return false;
+        } else if (!titulo.equals(other.titulo))
+            return false;
         return true;
     }
 
-    public String getFecha() {
+    public Date getFecha() {
         return fecha;
     }
 
-    public void setFecha(String fecha) {
+    public void setFecha(Date fecha) {
         this.fecha = fecha;
     }
 
