@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="es" xmlsn:th="http://www.thymeleaf.org">
+
+<head th:replace="commons/header :: header" />
+
+<body>
+  <div th:replace="commons/menu :: menu" />
+
+  <!-- boton nuevo nota -->
+  <a th:href="@{/notas/nuevo}" class="btn btn-primary" >nuevo nota</a>
+
+  <!-- lista notas -->
+  <table class="table">
+    <thead>
+      <tr>
+        <th scope="col" >codigo</th>
+        <th scope="col" >titulo</th>
+        <th scope="col" >fecha</th>
+        <th scope="col" >descripcion</th>
+        <th scope="col"></th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr th:each="nota : ${notas}">
+        <th scope="row" th:text="${nota.codigo}"></th>
+        <td th:text="${nota.titulo}"></td>
+        <td th:text="${nota.fecha}"></td>
+        <td th:text="${nota.descripcion}">tel</td>
+        <td>
+          <a th:href="@{/notas/editar/}+${nota.codigo}" class="btn btn-primary">editar</a>
+          <a th:href="@{/notas/borrar/}+${nota.codigo}" class="btn btn-danger">borrar</a>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+
+
+  <div th:replace="commons/footer :: footer" class="container" />
+
+</body>
+
+</html>
