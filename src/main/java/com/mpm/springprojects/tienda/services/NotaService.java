@@ -10,7 +10,7 @@ public interface NotaService {
 
     public List<Nota> findAll();
 
-    //public List<Nota> busqueda(String titulo, String fecha);
+    public List<Nota> busqueda(String titulo, String fecha);
 
     public void insert(Nota nota);
 

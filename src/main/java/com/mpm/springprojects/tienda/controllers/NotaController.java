@@ -1,5 +1,6 @@
 package com.mpm.springprojects.tienda.controllers;
 
+import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
@@ -20,15 +21,14 @@ import com.mpm.springprojects.tienda.services.NotaService;
 @Controller
 @RequestMapping("/notas")
 public class NotaController {
-    
+
     @Autowired
     NotaService notaService;
 
     @Value("${pagination.size}")
     int sizePage;
 
-
-    @GetMapping(value = "/lista")
+    @GetMapping(value = "/lista") // listado normal de todas las notas
     public ModelAndView listPage(Model model) {
 
         List<Nota> notas = notaService.findAll();
@@ -38,30 +38,33 @@ public class NotaController {
 
         return modelAndView;
     }
-/* 
+
     @PostMapping(value = "/busqueda")
     public ModelAndView busqueda(Nota nota) {
-        SimpleDateFormat formato = new SimpleDateFormat("dd/MM/yyyy"); 
-        Date fechaDate = formato.parse(nota.getFecha()); 
+        SimpleDateFormat formato = new SimpleDateFormat("dd/MM/yyyy"); // patron fecha
 
-        List<Nota> notas = notaService.busqueda(nota.getTitulo(), nota.getFecha());
+        // DateFormat df = new SimpleDateFormat("dd/MM/yyyy");
+        String fechaString = formato.format(nota.getFecha()); // pasa Date a String usando el patron
+
+        List<Nota> notas = notaService.busqueda(nota.getTitulo(), fechaString);
 
         ModelAndView modelAndView = new ModelAndView("notas/busqueda");
         modelAndView.addObject("notas", notas);
 
+        modelAndView.setViewName("notas/list");
         return modelAndView;
-    }*/
+    }
 
-    @RequestMapping(value= {"/nuevo"})
-    public ModelAndView nuevo(){
+    @RequestMapping(value = { "/nuevo" })
+    public ModelAndView nuevo() {
         ModelAndView modelAndView = new ModelAndView();
         modelAndView.setViewName("notas/nuevo");
 
         return modelAndView;
     }
 
-    @PostMapping(path = {"/guardar"})
-    public ModelAndView guardar(Nota nota){
+    @PostMapping(path = { "/guardar" })
+    public ModelAndView guardar(Nota nota) {
         ModelAndView modelAndView = new ModelAndView();
         notaService.insert(nota);
         modelAndView.setViewName("redirect:editar/" + nota.getCodigo());
@@ -69,8 +72,8 @@ public class NotaController {
         return modelAndView;
     }
 
-    @GetMapping(path = {"/editar/{codigo}"})
-    public ModelAndView editar(@PathVariable(name="codigo", required=true) int codigo){
+    @GetMapping(path = { "/editar/{codigo}" })
+    public ModelAndView editar(@PathVariable(name = "codigo", required = true) int codigo) {
         ModelAndView modelAndView = new ModelAndView();
         Nota nota = notaService.findById(codigo);
         modelAndView.addObject("nota", nota);
@@ -79,8 +82,8 @@ public class NotaController {
         return modelAndView;
     }
 
-    @PostMapping(path = {"/modificar"})
-    public ModelAndView modificar(Nota nota){
+    @PostMapping(path = { "/modificar" })
+    public ModelAndView modificar(Nota nota) {
 
         ModelAndView modelAndView = new ModelAndView();
         notaService.update(nota);
@@ -89,13 +92,13 @@ public class NotaController {
         return modelAndView;
     }
 
-    @GetMapping(path = {"/borrar/{codigo}"})
-    public ModelAndView borrar(@PathVariable(name="codigo", required=true) int codigo){
+    @GetMapping(path = { "/borrar/{codigo}" })
+    public ModelAndView borrar(@PathVariable(name = "codigo", required = true) int codigo) {
         ModelAndView modelAndView = new ModelAndView();
 
         notaService.delete(codigo);
         modelAndView.setViewName("redirect:../lista");
-        
+
         return modelAndView;
     }
 
