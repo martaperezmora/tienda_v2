@@ -1,5 +1,7 @@
 package com.mpm.springprojects.tienda.controllers;
 
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -36,6 +38,19 @@ public class NotaController {
 
         return modelAndView;
     }
+/* 
+    @PostMapping(value = "/busqueda")
+    public ModelAndView busqueda(Nota nota) {
+        SimpleDateFormat formato = new SimpleDateFormat("dd/MM/yyyy"); 
+        Date fechaDate = formato.parse(nota.getFecha()); 
+
+        List<Nota> notas = notaService.busqueda(nota.getTitulo(), nota.getFecha());
+
+        ModelAndView modelAndView = new ModelAndView("notas/busqueda");
+        modelAndView.addObject("notas", notas);
+
+        return modelAndView;
+    }*/
 
     @RequestMapping(value= {"/nuevo"})
     public ModelAndView nuevo(){

@@ -48,5 +48,10 @@ public class NotaServiceImpl implements NotaService{
     public void delete(int codigo) {
         restTemplate.delete(urlNotas + "notas/{codigo}", codigo);
     }
+/*
+    @Override
+    public List<Nota> busqueda(String titulo, String fecha) {
+        
+    }*/
     
 }

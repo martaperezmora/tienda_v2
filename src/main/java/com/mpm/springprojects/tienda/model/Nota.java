@@ -15,6 +15,12 @@ public class Nota {
 
     private String descripcion;
 
+    
+    public Nota(String titulo, Date fecha) { // constructor para la busqueda
+        this.titulo = titulo;
+        this.fecha = fecha;
+    }
+
     public Nota(int codigo) {
         this.codigo = codigo;
     }
