@@ -19,7 +19,7 @@
 
       <div class="col-5">
         <label for="fecha" class="form-label">fecha</label>
-        <input type="text" class="form-control" codigo="fecha" name="fecha" th:value="${nota.fecha}">
+        <input type="text" class="form-control" codigo="fecha" name="fecha" th:value="${#dates.format(nota.fecha, 'dd/MM/YYYY')}">
       </div>
 
       <div class="col-md-3">

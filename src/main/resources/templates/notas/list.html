@@ -15,7 +15,7 @@
     <input type="text" name="titulo" id="titulo">
     <label for="fecha">Fecha: </label>
     <input type="text" name="fecha" id="fecha">
-    <input type="submit" name="buscar" id="buscar" value="buscar">
+    <input type="submit" name="buscar" id="buscar" value="buscar" class="btn btn-primary">
   </form>
 
   <!-- lista notas -->
@@ -33,7 +33,7 @@
       <tr th:each="nota : ${notas}">
         <th scope="row" th:text="${nota.codigo}"></th>
         <td th:text="${nota.titulo}"></td>
-        <td th:text="${nota.fecha}"></td>
+        <td th:text="${#dates.format(nota.fecha, 'dd/MM/YYYY')}"></td>
         <td th:text="${nota.descripcion}">tel</td>
         <td>
           <a th:href="@{/notas/editar/}+${nota.codigo}" class="btn btn-primary">editar</a>

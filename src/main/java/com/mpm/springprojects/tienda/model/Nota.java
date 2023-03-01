@@ -4,13 +4,15 @@ import java.util.Date;
 
 import org.springframework.format.annotation.DateTimeFormat;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
+
 public class Nota {
 
     private int codigo;
 
     private String titulo;
 
-    @DateTimeFormat(pattern="dd/MM/yyyy")
+    //@DateTimeFormat(pattern="dd/MM/yyyy")
     private Date fecha;
 
     private String descripcion;
@@ -89,6 +91,7 @@ public class Nota {
         return true;
     }
 
+    //@JsonFormat(shape=JsonFormat.Shape.STRING, pattern = "dd/MM/YYYY", timezone=JsonFormat.DEFAULT_TIMEZONE)
     public Date getFecha() {
         return fecha;
     }
