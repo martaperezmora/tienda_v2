@@ -10,7 +10,7 @@
   <a th:href="@{/notas/nuevo}" class="btn btn-primary" >nuevo nota</a>
 
   <!-- busqueda por titulo o fecha -->
-  <form action="@{/notas/busqueda}" method="post">
+  <form th:action="@{/notas/busqueda}" method="post">
     <label for="titulo">Titulo: </label>
     <input type="text" name="titulo" id="titulo">
     <label for="fecha">Fecha: </label>

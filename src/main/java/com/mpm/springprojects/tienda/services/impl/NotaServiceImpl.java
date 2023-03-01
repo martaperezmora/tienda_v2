@@ -51,7 +51,7 @@ public class NotaServiceImpl implements NotaService{
 
     @Override
     public List<Nota> busqueda(String titulo, String fecha) {
-        Nota[] listNota = restTemplate.getForObject(urlNotas + "notas/buscar", Nota[].class, titulo, fecha);
+        Nota[] listNota = restTemplate.getForObject(urlNotas + "notas/buscar?titulo=" + titulo + "&fecha=" + fecha, Nota[].class);
         List<Nota> notas = Arrays.asList(listNota);
         return notas;
     }

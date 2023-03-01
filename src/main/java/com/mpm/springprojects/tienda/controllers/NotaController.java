@@ -15,7 +15,6 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 
-import com.fasterxml.jackson.annotation.JsonFormat;
 import com.mpm.springprojects.tienda.model.Nota;
 import com.mpm.springprojects.tienda.services.NotaService;
 
@@ -39,7 +38,6 @@ public class NotaController {
 
         return modelAndView;
     }
-
 
     @PostMapping(value = "/busqueda")
     public ModelAndView busqueda(Nota nota) {
@@ -84,7 +82,6 @@ public class NotaController {
         return modelAndView;
     }
 
-    
     @PostMapping(path = { "/modificar" })
     public ModelAndView modificar(Nota nota) {
 
