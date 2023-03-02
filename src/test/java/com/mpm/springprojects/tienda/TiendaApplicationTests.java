@@ -63,6 +63,10 @@ class TiendaApplicationTests {
 		departamento.setNombre("departamento");
 		departamento.setCodigo(10);
 
+		Permiso nota = new Permiso();
+		nota.setNombre("nota");
+		nota.setCodigo(11);
+
 		permisoService.createPermiso(admin);
 		permisoService.createPermiso(pedidos);
 		permisoService.createPermiso(cliente);
@@ -73,6 +77,7 @@ class TiendaApplicationTests {
 		permisoService.createPermiso(cesta);
 		permisoService.createPermiso(empleado);
 		permisoService.createPermiso(departamento);
+		permisoService.createPermiso(nota);
 
 		Usuario usuario1 = new Usuario();
 		usuario1.setCodigo(1);
@@ -103,22 +108,24 @@ class TiendaApplicationTests {
 		permisos1.add(admin);
 		permisos1.add(login);
 		usuario1.setPermisos(permisos1);
+		usuarioService.createUsuario(usuario1);
 
 		List<Permiso> permisos = new ArrayList<Permiso>();
 
 		permisos.add(login);
 		usuario4.setPermisos(permisos);
+		usuarioService.createUsuario(usuario4);
 
 		permisos.add(pedidos);
 		usuario2.setPermisos(permisos);
+		usuarioService.createUsuario(usuario2);	
 
 		permisos.add(cliente);
+		permisos.add(nota);
 		usuario3.setPermisos(permisos);
-
-		usuarioService.createUsuario(usuario1);
-		usuarioService.createUsuario(usuario2);
 		usuarioService.createUsuario(usuario3);
-		usuarioService.createUsuario(usuario4);
+
+
 
 	}
 

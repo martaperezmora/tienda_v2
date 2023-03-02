@@ -12,7 +12,7 @@ public class Nota {
 
     private String titulo;
 
-    //@DateTimeFormat(pattern="dd/MM/yyyy")
+    //@JsonFormat(shape=JsonFormat.Shape.STRING, pattern = "dd/MM/YYYY", timezone=JsonFormat.DEFAULT_TIMEZONE)
     private Date fecha;
 
     private String descripcion;
@@ -91,7 +91,7 @@ public class Nota {
         return true;
     }
 
-    //@JsonFormat(shape=JsonFormat.Shape.STRING, pattern = "dd/MM/YYYY", timezone=JsonFormat.DEFAULT_TIMEZONE)
+   
     public Date getFecha() {
         return fecha;
     }
