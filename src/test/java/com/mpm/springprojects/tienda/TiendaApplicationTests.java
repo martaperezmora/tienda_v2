@@ -6,6 +6,7 @@ import java.util.List;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.security.crypto.password.PasswordEncoder;
 
 import com.mpm.springprojects.tienda.model.Permiso;
 import com.mpm.springprojects.tienda.model.Usuario;
@@ -20,6 +21,9 @@ class TiendaApplicationTests {
 
 	@Autowired
 	UsuarioService usuarioService;
+
+	@Autowired
+	PasswordEncoder encoder;
 
 	@Test
 	void crearUsuarios() {
@@ -82,25 +86,25 @@ class TiendaApplicationTests {
 		Usuario usuario1 = new Usuario();
 		usuario1.setCodigo(1);
 		usuario1.setNombre("usuario1");
-		usuario1.setPassword("{noop}3333");
+		usuario1.setPassword(encoder.encode("3333"));
 		usuario1.setEmail("usu1@email.com");
 
 		Usuario usuario2 = new Usuario();
 		usuario2.setCodigo(2);
 		usuario2.setNombre("usuario2");
-		usuario2.setPassword("{noop}5555");
+		usuario2.setPassword(encoder.encode("5555"));
 		usuario2.setEmail("usu2@email.com");
 
 		Usuario usuario3 = new Usuario();
 		usuario3.setCodigo(3);
 		usuario3.setNombre("usuario3");
-		usuario3.setPassword("{noop}8888");
+		usuario3.setPassword(encoder.encode("8888"));
 		usuario3.setEmail("usu3@email.com");
 
 		Usuario usuario4 = new Usuario();
 		usuario4.setCodigo(4);
 		usuario4.setNombre("usuario4");
-		usuario4.setPassword("{noop}2222");
+		usuario4.setPassword(encoder.encode("2222"));
 		usuario4.setEmail("usu4@email.com");
 
 
